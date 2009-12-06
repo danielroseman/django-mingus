@@ -144,6 +144,10 @@ label
 
 
 /* CODE */
+pre, code {
+    font-size: 13px;
+}
+
 pre
 {
   overflow: auto;
@@ -215,7 +219,7 @@ ul.navbar-one li
 #footer p{ margin-left: 1.6em; padding-bottom: 1.8em; }
 
 /* TYPE BASE */
-p, ul, ol, pre { font-size: 1em; margin: 0 0 0.6em; }
+p, ul, ol { font-size: 1em; margin: 0 0 0.6em; }
 
 ul, ol { margin-left: 1.4em; }
 
