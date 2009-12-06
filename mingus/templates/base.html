@@ -21,6 +21,7 @@
   <link rel="alternate" type="application/rss+xml" title="{{ BLOG_SETTINGS.site_name }} main rss feed" href="{{ BLOG_SETTINGS.rss_url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ BLOG_SETTINGS.site_name }} all entries feed" href="/feeds/all/">
   <link rel="alternate" type="application/rss+xml" title="{{ BLOG_SETTINGS.site_name }} all posts feed" href="/feeds/latest/">
+  {% if category %}<link rel="alternate" type="application/rss+xml" title="{{ BLOG_SETTINGS.site_name }} - {{ category }} posts" href="/feeds/categories/{{ category.title|lower }}">{% endif %}
   {% endblock %}
 
 
@@ -67,7 +68,7 @@
   <!-- /header -->
 
   <div class="container_16">
-    <div class="grid_9 suffix_1">
+    <div class="grid_11 suffix_1">
       <div class="content">
             {% block content %}{% endblock %}
       </div>
@@ -76,7 +77,7 @@
     </div>
     <!-- /grid_9 -->
 
-    <div id="right-rail" class="grid_6">
+    <div id="right-rail" class="grid_4">
 
       <h4>{% trans "About" %}</h4>
       <p>{{ BLOG_SETTINGS.about }}</p>
@@ -84,8 +85,9 @@
       <h4>Subscribe</h4>
       <ul>
         <li><a href="{{ BLOG_SETTINGS.twitter_url }}" title="Follow me on Twitter">Twitter</a></li>
-        <li><a href="{{ BLOG_SETTINGS.rss_url }}" title"Subscribe via RSS">RSS</a></li>
-        <li><a href="{{ BLOG_SETTINGS.email_subscribe_url }}" title="Subscribe via Email">Email</a></li>
+        <li><a href="{{ BLOG_SETTINGS.rss_url }}" title"Subscribe via RSS">RSS{% if category %} - all posts{% endif %}</a></li>
+        {% if category %}<li><a href="/feeds/categories/{{ category.title|lower }}" title"Subscribe via RSS">RSS - {{ category }}</a></li>{% endif %}
+        {% if BLOG_SETTINGS_email_subscribe_url %}<li><a href="{{ BLOG_SETTINGS.email_subscribe_url }}" title="Subscribe via Email">Email</a></li>{% endif %}
       </ul>
 
       <h4>{% trans "Elsewhere" %}</h4>
@@ -148,18 +150,8 @@
       </ul>
       {% endcache %}
 
-      {% cache 3600 "delicious.popular" %}
-      {% parse_feed 'http://feeds.delicious.com/v2/rss/tag/django?count=15' as items %}
-      <h4>{% trans "Django Popular" %}</h4>
-      <ul class="recent-posts">
-      {% for item in items.entries %}
-      <li><a href="{{ item.link }}" title="{{ item.title }}">{{ item.title }}</a></li>
-      {% endfor %}
-      </ul>
-      {% endcache %}
-
     </div>
-    <!-- /grid_6 -->
+    <!-- /grid_4 -->
   </div>
   <!-- /container_16 -->
 
@@ -176,7 +168,7 @@
   </div>
   <!-- /footer -->
 
-  <!-- google analtyics -->
+  <!-- google analytics -->
   {% cache 7200 "base.analytics" %}
   {% analytics %}
   {% endcache %}

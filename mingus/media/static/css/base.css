@@ -55,6 +55,8 @@ body {
 	width: 3.8em;
 }
 
+.comment_count { font-size:85%; }
+
 #comments{ 
     margin-top: 1.8em; 
     border-top: solid 1px #CCC; 
@@ -141,21 +143,26 @@ label
 
 
 /* CODE */
-pre 
+pre, code {
+    font-size: 13px;
+}
+
+.highlight pre 
 {
-	overflow: auto;
-	overflow: auto;
-	z-index: 0;
-	background-color: #fff;
-	padding: .6em 0em .6em .6em;
-	display: block;
-	width: 99%;
-	border: 0px solid #ccc;
-	margin: 1.0em 0em 1.0em 0em;
+    overflow: auto;
+    overflow: auto;
+    z-index: 0;
+    background-color: #fff;
+    padding: .6em 0em .6em .6em;
+    display: block;
+    width: 99%;
+    border: 0px solid #ccc;
+    margin: 1.0em 0em 1.0em 0em;
+    font-family: 'Bitstream Vera Sans Mono','Courier',monospace;
 }
 
 pre.prettyprint { 
-	padding: .6em 0em .6em .6em;
+    padding: .6em 0em .6em .6em;
     border: none; 
 }
 
@@ -212,7 +219,7 @@ ul.navbar-one li
 #footer p{ margin-left: 1.6em; padding-bottom: 1.8em; } 
 
 /* TYPE BASE */              
-p, ul, ol, pre { font-size: 1em; margin: 0 0 0.6em; }
+p, ul, ol { font-size: 1em; margin: 0 0 0.6em; }
 
 ul, ol { margin-left: 1.4em; }
 

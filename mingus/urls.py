@@ -66,7 +66,7 @@ urlpatterns += patterns('',
 
     url(r'^tags/(?P<slug>[-\w]+)/$', 'mingus.core.views.tag_detail',
             name='blog_tag_detail'),
-
+    (r'comments/', include('django.contrib.comments.urls')),
     (r'', include('basic.blog.urls')),
 )
 

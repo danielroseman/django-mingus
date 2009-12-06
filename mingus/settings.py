@@ -57,6 +57,7 @@ INSTALLED_APPS = (
   'django.contrib.sitemaps',
   'django.contrib.flatpages',
   'django.contrib.redirects',
+  'django.contrib.comments',
 
   'django_extensions',
   'tagging',
