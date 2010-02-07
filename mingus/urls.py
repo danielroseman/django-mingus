@@ -9,14 +9,14 @@ from mingus.core.views import springsteen_results, springsteen_firehose, \
                             home_list, springsteen_category, contact_form, \
                             proxy_search
 from robots.views import rules_list
-from mingus.core.feeds import AllEntries, ByTag
+from mingus.core.feeds import AllEntries, ByTag, ByCategory
 
 admin.autodiscover()
 
 feeds = {
     'latest': BlogPostsFeed,
     # 'all': AllEntries,
-    'categories': BlogPostsByCategory,
+    'categories': ByCategory,
     'tags': ByTag,
 }
 #ex: /feeds/latest/

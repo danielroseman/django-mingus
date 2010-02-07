@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from basic.blog.models import Settings
 from django_proxy.models import Proxy
 from tagging.models import Tag, TaggedItem
+from basic.blog.feeds import BlogPostsByCategory
 
 class AllEntries(Feed):
     _settings = None
@@ -54,7 +55,7 @@ class ByTag(AllEntries):
         
 
     def title(self):
-        return '%s all entries feed' % self.settings.site_name
+        return '%s feed' % self.settings.site_name
 
     def get_object(self, bits):
         if len(bits) != 1:
@@ -76,3 +77,13 @@ class ByTag(AllEntries):
         return Proxy.objects.published().filter(
             tags__icontains=obj.name
         ).order_by('-pub_date')[:10]
+
+    def item_pubdate(self, obj):
+        return obj.pub_date
+
+
+
+class ByCategory(BlogPostsByCategory):
+    def item_pubdate(self, obj):
+        return obj.publish
+
