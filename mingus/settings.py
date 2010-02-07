@@ -4,10 +4,10 @@ import os
 PROJECT_ROOT = os.path.dirname(__file__)
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
-ADMIN_MEDIA_PREFIX = '/static/admin/'
+ADMIN_MEDIA_PREFIX = '/admin_media/'
 
 #staticfiles app values
-STATIC_URL = '/media/'
+STATIC_URL = '/media/mingus/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'media')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'media', 'mingus'),
@@ -30,11 +30,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
-    'sugar.middleware.debugging.UserBasedExceptionMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    'djangodblog.DBLogMiddleware',
     #'slimmer.middleware.CompressHtmlMiddleware',
+    'sugar.middleware.debugging.UserBasedExceptionMiddleware',
     'request.middleware.RequestMiddleware',
+    'djangodblog.DBLogMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -92,13 +92,13 @@ INSTALLED_APPS = (
   'staticfiles',
   'tinymce',
   'django_wysiwyg',
-  'request',
   'cropper',
   'memcache_status',
+  'request',
 )
 
-TINYMCE_JS_ROOT = STATIC_ROOT + '/mingus/js/tiny_mce/'
-TINYMCE_COMPRESSOR = True
+
+TINYMCE_JS_URL = STATIC_URL + 'js/tiny_mce/tiny_mce.js'
 TINYMCE_DEFAULT_CONFIG = {
     'theme': "advanced",
     'cleanup_on_startup': True,
@@ -106,7 +106,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_toolbar_location': "top",
 }
 
-DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + "mingus/js/ckeditor/"
+DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + "js/ckeditor/"
 DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 
 try:
