@@ -151,6 +151,10 @@ pre, pre.prettify
   border: 1px solid red;
 }
 
+.gist 
+{
+	font-size:13px;
+}
 
 /* HEADER/NAV */
 #header
@@ -206,6 +210,8 @@ ul.navbar-one li
 
 /* TYPE BASE */
 p, ul, ol, pre { font-size: 1em; margin: 0 0 0.6em; }
+
+code { font-size:120% }
 
 ul, ol { margin-left: 1.4em; }
 

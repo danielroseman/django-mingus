@@ -15,7 +15,7 @@ admin.autodiscover()
 
 feeds = {
     'latest': BlogPostsFeed,
-    'all': AllEntries,
+    # 'all': AllEntries,
     'categories': BlogPostsByCategory,
     'tags': ByTag,
 }
@@ -45,6 +45,7 @@ urlpatterns += patterns('',
     url(r'^quotes/(?P<slug>[-\w]+)/$', 'mingus.core.views.quote_detail', name='quote_detail'),
     url(r'robots.txt$', rules_list, name='robots_rule_list'),
     (r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    (r'^feeds/all/$', 'django.views.generic.simple.redirect_to', {'url': '/feeds/latest/'}),
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
     (r'^api/springsteen/posts/$', springsteen_results),
     (r'^api/springsteen/firehose/$', springsteen_firehose),
@@ -69,6 +70,8 @@ urlpatterns += patterns('',
 
     url(r'^tags/(?P<slug>[-\w]+)/$', 'mingus.core.views.tag_detail',
             name='blog_tag_detail'),
+
+    (r'comments/', include('django.contrib.comments.urls')),
 
     url (r'^search/$',
         view=proxy_search,

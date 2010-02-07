@@ -33,7 +33,7 @@ MIDDLEWARE_CLASSES = (
     'sugar.middleware.debugging.UserBasedExceptionMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'djangodblog.DBLogMiddleware',
-    'slimmer.middleware.CompressHtmlMiddleware',
+    #'slimmer.middleware.CompressHtmlMiddleware',
     'request.middleware.RequestMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
@@ -51,6 +51,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 INSTALLED_APPS = (
   'django.contrib.auth',
   'django.contrib.contenttypes',
+  'django.contrib.comments',
   'django.contrib.sessions',
   'django.contrib.sites',
   'django.contrib.admin',

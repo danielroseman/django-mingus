@@ -27,10 +27,10 @@
 
     {% compress css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/960.css" type="text/css" media="all" charset="utf-8">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/prettify.css" type="text/css" media="all" charset="utf-8">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/prettify.css" type="text/css" media="all" charset="utf-8">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/pygments.css" type="text/css" media="all" charset="utf-8">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" type="text/css" media="all" charset="utf-8">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/themes/basic.css" type="text/css" media="all" charset="utf-8">
+	<!--<link rel="stylesheet" href="{{ STATIC_URL }}css/themes/basic.css" type="text/css" media="all" charset="utf-8">-->
    {% endcompress %}
 
    <!--[if IE 6]>
@@ -49,7 +49,7 @@
     {% block extra_head %}{% endblock %}
   </head>
 
-<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}blog{% endblock %}">
+<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
 <div id="bleeder"></div>
 
   <div id="body-container" class="clearfix">
@@ -73,7 +73,7 @@
   <!-- /header -->
 
       <div class="container_16">
-        <div class="grid_9 suffix_1">
+        <div class="grid_11 suffix_1">
           <div class="content">
             {% block content %}{% endblock %}
           </div>
@@ -82,7 +82,7 @@
         </div>
         <!-- /grid_9 -->
 
-        <div id="right-rail" class="grid_6">
+        <div id="right-rail" class="grid_4">
 
           <h4>{% trans "About" %}</h4>
           <p>{{ BLOG_SETTINGS.about|safe }}</p>
@@ -91,10 +91,8 @@
           <ul>
           {% if BLOG_SETTINGS.twitter_url %}<li><a href="{{ BLOG_SETTINGS.twitter_url }}" title="Follow me on Twitter">Twitter</a></li>{% endif %}
           {% if BLOG_SETTINGS.rss_url %}<li><a href="{{ BLOG_SETTINGS.rss_url }}" title"Subscribe via RSS">RSS</a></li>{% endif %}
-          {% if BLOG_SETTINGS.email_subscribe_url %}<li><a href="{{ BLOG_SETTINGS.email_subscribe_url }}" title="Subscribe via Email">Email</a></li>{% endif %}
-
-      {% if category %}<li><a href="/feeds/categories/{{ category.title|lower }}" title"Subscribe via RSS">RSS - {{ category }}</a></li>{% endif %}
-        {% if BLOG_SETTINGS_email_subscribe_url %}<li><a href="{{ BLOG_SETTINGS.email_subscribe_url }}" title="Subscribe via Email">Email</a></li>{% endif %}
+          {% if category %}<li><a href="/feeds/categories/{{ category.title|lower }}" title"Subscribe via RSS">RSS - {{ category }}</a></li>{% endif %}
+          {% if BLOG_SETTINGS_email_subscribe_url %}<li><a href="{{ BLOG_SETTINGS.email_subscribe_url }}" title="Subscribe via Email">Email</a></li>{% endif %}
        </ul>
 
           </ul>
@@ -169,18 +167,6 @@
           {% endif %}
           {% endcache %}
 
-          {% cache 3600 "delicious.popular" %}
-          {% parse_feed 'http://feeds.delicious.com/v2/rss/tag/django?count=15' as items %}
-          {% if items %}
-          <h4>{% trans "Django Popular" %}</h4>
-          <ul class="recent-posts">
-            {% for item in items.entries %}
-            <li><a href="{{ item.link }}" title="{{ item.title }}">{{ item.title }}</a></li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          {% endcache %}
-
         </div>
         <!-- /grid_6 -->
       </div>
@@ -205,13 +191,13 @@
     {% endcache %}
     {% block extra_body %}
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript" charset="utf-8">
+        <!--<script type="text/javascript" charset="utf-8">
         jQuery(function($) {
             $.getScript('{{ STATIC_URL }}js/prettify.js', function(){
                 prettyPrint();
             });
         });
-        </script>
+</script>-->
     {% endblock %}
   </body>
 </html>
