@@ -120,7 +120,7 @@ def home_list(request, page=0, template_name='proxy/proxy_list.html', **kwargs):
 
     '''
 
-    posts = Proxy.objects.published().order_by('-pub_date')
+    posts = Proxy.objects.published().select_related().order_by('-pub_date')
     pagesize = getattr(Settings.get_current(), 'page_size', 20)
 
     return list_detail.object_list(

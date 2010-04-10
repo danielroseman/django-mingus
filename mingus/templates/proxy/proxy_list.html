@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load efficiency %}
 
 {% block title %}{{ block.super }}{% endblock %}
 {% block body_class %}{{ block.super }} post_list{% endblock %}
@@ -8,6 +8,7 @@
 
 {% block content %}
   <div class="post_list">
+	{% get_proxies_and_comments object_list %}
     {% for object in object_list %}
     {% ifequal object.content_type.name "post" %}
       {% include "proxy/includes/post_item.html" %}
